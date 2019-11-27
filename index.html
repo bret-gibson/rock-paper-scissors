@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+let playerScore = 0;
+let computerScore = 0;
+
+function computerPlay(){
+    let choice = Math.floor(Math.random() * 3) + 1;
+    let choiceResult;
+    switch(choice){
+        case 1: 
+            choice == 1;
+            choiceResult = "Rock";
+            break;
+
+        case 2: 
+            choice == 2;
+            choiceResult = "Paper";
+            break;
+
+        case 3: 
+            choice == 3;
+            choiceResult = "Scissors";
+            break;
+    }
+    return choiceResult;
+}
+
+function playerChoice(){
+    let playerPick = prompt("What will it be? Rock, Paper, or Scissors??")
+    return playerPick;
+}
+
+function playRound(playerSelection, computerSelection){
+    let roundResult;
+    const player = playerSelection.toLowerCase();
+    const computer = computerSelection.toLowerCase();
+
+    if (player === computer) {
+        return "Tie"
+    } else if (player === "rock") {
+        switch (computer) {
+            case "paper":
+                computerScore++
+                return "You Lose! Paper beats Rock"
+                break
+            case "scissors":
+                playerScore++
+                return "You Win! Rock beats Scissors"
+                break
+        }
+    } else if (player === "paper") {
+        switch (computer) {
+            case "scissors":
+                computerScore++
+                return "You Lose! Scissors beat Rock"
+                break
+            case "rock":
+                playerScore++
+                return "You Win! Paper breats Rock"
+                break
+        }
+    } else if (player === "scissors") {
+        switch (computer) {
+            case "rock":
+                computerScore++
+                return "You Lose! Rock beats Scissors"
+                break
+            case "paper":
+                playerScore++
+                return "You Win! Scissors beat Paper"
+        }
+    }
+}
+
+function game(){
+    let gameResult;
+    let turn = 1;
+    while (playerScore < 5 && computerScore < 5){
+        let computerSelection = computerPlay();
+        let playerSelection = playerChoice();
+        console.log("\nTurn: " + turn)
+        console.log("Player throws: " + playerSelection);
+        console.log("Computer throws: " + computerSelection);
+        console.log(playRound(playerSelection, computerSelection));
+        console.log("Player: " + playerScore + " Computer " + computerScore + "\n");
+        turn++;
+    }
+    if (playerScore == 5){
+        gameResult = "Player wins."
+    }
+    if(computerScore == 5){
+        gameResult = "Computer wins."
+    }
+    return gameResult;
+}
+
+console.log(game());
+
+</script>
+</head>
+<body>
+</body>
+</html>
